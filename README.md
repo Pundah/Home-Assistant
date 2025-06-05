@@ -12,7 +12,6 @@ My personal [Home Assistant Container](https://home-assistant.io) configurations
 
 | Device  | Quantity | Connection | Home Assistant | Notes |
 | :-------------: | :---: | :-------------: | :-------------: | :-------------: |
-| [SONOFF Zigbee 3.0 USB Dongle Plus-P](https://a.co/d/00dGtYj) | 1 | USB | [Zigbee2MQTT](https://www.home-assistant.io/integrations/mqtt/) | Used to control all Zigbee smart bulbs and sensors. Home-Assistant could not detect the dongle by default, so I switched to Zigbee2MQTT. |
 | [Decora Smart Wi-Fi Bridge](https://www.homedepot.com/p/Leviton-Decora-Smart-Wi-Fi-Bridge-Use-with-DN6HD-DN15S-No-Neutral-Dimmers-and-Switches-MLWSB-1RW-R02-MLWSB-1RW/320528382) | 1 | Wi-Fi | [HomeKit](https://www.home-assistant.io/integrations/homekit) | Used to control all Leviton Decora Smart devices. |
 | [SONOFF Zigbee 3.0 USB Dongle Plus-E](https://a.co/d/fkjkeBF) | 1 | USB | [Zigbee2MQTT](https://www.home-assistant.io/integrations/mqtt/) | Used to control all Zigbee smart bulbs and sensors. Home-Assistant could not detect the dongle by default, so I switched to Zigbee2MQTT. |
 
@@ -97,4 +96,4 @@ My personal [Home Assistant Container](https://home-assistant.io) configurations
 
 | Device  | Quantity | Connection | Home Assistant | Notes |
 | :-------------: | :---: | :-------------: | :-------------: | :-------------: |
-| - | - | - | - | - |
+| [SONOFF Zigbee 3.0 USB Dongle Plus-P](https://a.co/d/00dGtYj) | 1 | USB | [Zigbee2MQTT](https://www.home-assistant.io/integrations/mqtt/) | Used to control all Zigbee smart bulbs and sensors. Home-Assistant could not detect the dongle by default, so I switched to Zigbee2MQTT. |
