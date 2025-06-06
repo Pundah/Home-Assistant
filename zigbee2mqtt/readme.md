@@ -6,3 +6,8 @@ I started using Home Assistant with devices that only connected to Wi-Fi so I ne
 ### Update 1:
 
 After a few days of using the `SONOFF Zigbee 3.0 USB Dongle Plus - P` and adding more sensors, I noticed devices were starting to drop and not reconnect. Luckily while making an Amazon purchase, I forgot to remove the [SONOFF Zigbee 3.0 USB Dongle Plus - E](https://a.co/d/fkjkeBF) from my cart. Wham, Bahm, and now we have a new adapter to test with. I have updated my ZigBee2MQTT settings to use the `SONOFF Zigbee 3.0 USB Dongle Plus-E`. I was also to change my Wi-Fi settings to move the 2.4GH band to channel 6 to allow for my MQTT network to run on channel 11.
+
+### Update 2: 
+
+After using the `SONOFF Zigbee 3.0 USB Dongle Plus-E` for about a week now, my connection strength has been excellent. My devices are no longer dropping off the network, and my automations are responding more quickly.
+
