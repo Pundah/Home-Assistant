@@ -1,4 +1,4 @@
-[![GitHub last commit](https://img.shields.io/github/last-commit/Pundah/Home-Assistant.svg?style=plasticr)](https://github.com/geekofweek/homeassistant/commits/master)
+[![GitHub last commit](https://img.shields.io/github/last-commit/Pundah/Home-Assistant.svg?style=plasticr)](https://github.com/Pundah/Home-Assistant/commits/main)
 
 # Overview
 My personal [Home Assistant Container](https://home-assistant.io) configurations.  These are the active automations and configurations that I use every day and are updated frequently as I add more devices and devise increasingly complex methods for performing simple tasks.

@@ -1,0 +1,517 @@
+- id: '1748766727705'
+  alias: Cody's Bedtime
+  description: Beditme routine for when phone is plugged in.
+  triggers:
+  - type: plugged_in
+    device_id: 9381be378546e86a3bd680eacd722591
+    entity_id: 593c3a4a231b06acfeb66c15112398aa
+    domain: binary_sensor
+    trigger: device
+  conditions:
+  - condition: time
+    after: '20:00:00'
+    before: 04:00:00
+    weekday:
+    - sat
+    - fri
+    - thu
+    - wed
+    - tue
+    - mon
+    - sun
+  - condition: state
+    entity_id: input_boolean.stop_bedtime_routine_cody
+    state: 'off'
+  actions:
+  - action: light.turn_off
+    metadata: {}
+    data: {}
+    target:
+      area_id: bedroom
+  mode: single
+- id: '1748621098096'
+  alias: Battery Low Counter
+  description: ''
+  triggers:
+  - type: bat_low
+    device_id: ad535e51b7dce956da05000a026e15c4
+    entity_id: 9dcedfb9314640afb811425cc587299e
+    domain: binary_sensor
+    trigger: device
+  - type: bat_low
+    device_id: 61e80e02efd9da3303b6ef7c8f6e4e8c
+    entity_id: eef283279cc7481167d4bb9435de57ea
+    domain: binary_sensor
+    trigger: device
+  - type: bat_low
+    device_id: db41608863db7d4a87b65fc9b2dd1076
+    entity_id: 222534d1c3773e9604eadecbd4324525
+    domain: binary_sensor
+    trigger: device
+  - type: bat_low
+    device_id: 5fecffbe3f3a4606689a9836f8e050fc
+    entity_id: e1ff5e255c27a4926f52362e261d495d
+    domain: binary_sensor
+    trigger: device
+  - type: bat_low
+    device_id: d5c08270d95cf0d00fa820ff94a0b86c
+    entity_id: 273179ecebe8b54e086f84d63d4df666
+    domain: binary_sensor
+    trigger: device
+  - type: bat_low
+    device_id: e64b0f0f3b67d1f854908934448b9c72
+    entity_id: d1485787ea27030b12805a2026d7e657
+    domain: binary_sensor
+    trigger: device
+  conditions: []
+  actions:
+  - action: counter.increment
+    metadata: {}
+    data: {}
+    target:
+      entity_id: counter.batter_low_counter
+  mode: single
+- id: '1748621214332'
+  alias: Batter Low Counter - Reset
+  description: ''
+  triggers:
+  - type: not_bat_low
+    device_id: ad535e51b7dce956da05000a026e15c4
+    entity_id: 9dcedfb9314640afb811425cc587299e
+    domain: binary_sensor
+    trigger: device
+  - type: not_bat_low
+    device_id: 61e80e02efd9da3303b6ef7c8f6e4e8c
+    entity_id: eef283279cc7481167d4bb9435de57ea
+    domain: binary_sensor
+    trigger: device
+  - type: not_bat_low
+    device_id: db41608863db7d4a87b65fc9b2dd1076
+    entity_id: 222534d1c3773e9604eadecbd4324525
+    domain: binary_sensor
+    trigger: device
+  - type: not_bat_low
+    device_id: 5fecffbe3f3a4606689a9836f8e050fc
+    entity_id: e1ff5e255c27a4926f52362e261d495d
+    domain: binary_sensor
+    trigger: device
+  - type: not_bat_low
+    device_id: d5c08270d95cf0d00fa820ff94a0b86c
+    entity_id: 273179ecebe8b54e086f84d63d4df666
+    domain: binary_sensor
+    trigger: device
+  - type: not_bat_low
+    device_id: e64b0f0f3b67d1f854908934448b9c72
+    entity_id: d1485787ea27030b12805a2026d7e657
+    domain: binary_sensor
+    trigger: device
+  conditions: []
+  actions:
+  - action: counter.decrement
+    metadata: {}
+    data: {}
+    target:
+      entity_id: counter.batter_low_counter
+  mode: single
+- id: bedroom_fan_morning
+  alias: 'Morning Auto Off '
+  description: Turns off the bedroom fan at 6:15 AM
+  triggers:
+  - trigger: time
+    at: 06:15:00
+  conditions:
+  - condition: device
+    type: is_on
+    device_id: 9b5f103c6f070811a4a779daec9a3417
+    entity_id: e8fa8bada3c4e7e75dfc161228f0514a
+    domain: switch
+  actions:
+  - type: turn_off
+    device_id: 9b5f103c6f070811a4a779daec9a3417
+    entity_id: e8fa8bada3c4e7e75dfc161228f0514a
+    domain: switch
+  mode: single
+- id: '1748567259194'
+  alias: Dryer running
+  description: ''
+  triggers:
+  - type: vibration
+    device_id: 61e80e02efd9da3303b6ef7c8f6e4e8c
+    entity_id: 82b5466a7ce138f6824efda852d876b5
+    domain: binary_sensor
+    trigger: device
+  conditions: []
+  actions:
+  - action: counter.increment
+    metadata: {}
+    data: {}
+    target:
+      entity_id: counter.dryer_vibration_counter
+  - condition: numeric_state
+    entity_id: counter.dryer_vibration_counter
+    above: 30
+  - action: input_boolean.turn_on
+    metadata: {}
+    data: {}
+    target:
+      entity_id: input_boolean.dryer_running
+  mode: single
+- id: '1748567409416'
+  alias: Washer running
+  description: ''
+  triggers:
+  - type: vibration
+    device_id: ad535e51b7dce956da05000a026e15c4
+    entity_id: f5d132311de9119488b7399cfbbe5b9b
+    domain: binary_sensor
+    trigger: device
+  conditions: []
+  actions:
+  - action: counter.increment
+    metadata: {}
+    data: {}
+    target:
+      entity_id:
+      - counter.washer_vibration_counter
+  - condition: numeric_state
+    entity_id: counter.washer_vibration_counter
+    above: 20
+  - action: input_boolean.turn_on
+    metadata: {}
+    data: {}
+    target:
+      entity_id:
+      - input_boolean.washer_running
+  mode: single
+- id: '1748567585742'
+  alias: Dryer Off
+  description: ''
+  triggers:
+  - type: no_vibration
+    device_id: 61e80e02efd9da3303b6ef7c8f6e4e8c
+    entity_id: 82b5466a7ce138f6824efda852d876b5
+    domain: binary_sensor
+    trigger: device
+    for:
+      hours: 0
+      minutes: 5
+      seconds: 0
+  conditions:
+  - condition: state
+    entity_id: input_boolean.dryer_running
+    state: 'on'
+  actions:
+  - action: counter.reset
+    metadata: {}
+    data: {}
+    target:
+      entity_id: counter.dryer_vibration_counter
+  - condition: state
+    entity_id: automation.dryer_running
+    state: 'on'
+    enabled: false
+  - action: input_boolean.turn_off
+    metadata: {}
+    data: {}
+    target:
+      entity_id: input_boolean.dryer_running
+  - action: notify.alexa_media_kitchen_dot
+    data:
+      message: The Dryer is finished.
+  - action: notify.alexa_media_cody_s_desk_echo_dot
+    data:
+      message: The Dryer is finished.
+  mode: single
+- id: '1748567646569'
+  alias: Washer Off
+  description: ''
+  triggers:
+  - type: no_vibration
+    device_id: ad535e51b7dce956da05000a026e15c4
+    entity_id: f5d132311de9119488b7399cfbbe5b9b
+    domain: binary_sensor
+    trigger: device
+    for:
+      hours: 0
+      minutes: 5
+      seconds: 0
+  conditions:
+  - condition: state
+    entity_id: input_boolean.washer_running
+    state: 'on'
+  actions:
+  - action: counter.reset
+    metadata: {}
+    data: {}
+    target:
+      entity_id:
+      - counter.washer_vibration_counter
+  - condition: state
+    entity_id: automation.washer_running
+    state: 'on'
+    enabled: false
+  - action: input_boolean.turn_off
+    metadata: {}
+    data: {}
+    target:
+      entity_id:
+      - input_boolean.washer_running
+  - action: notify.alexa_media_kitchen_dot
+    data:
+      message: The Washer is finished.
+  - action: notify.alexa_media_cody_s_desk_echo_dot
+    data:
+      message: The Washer is finished.
+  mode: single
+- id: '1748742943882'
+  alias: Laundry Room Open
+  description: ''
+  triggers:
+  - type: opened
+    device_id: d21cb71010a62e97bdf0c93b8a62190f
+    entity_id: 3a3441e4fe5638480a5ce2e68076eaa2
+    domain: binary_sensor
+    trigger: device
+  conditions: []
+  actions:
+  - type: turn_on
+    device_id: aa7e375127eb9d42aa7120e84302971f
+    entity_id: 6427d26ad5d9a95c5692bf83f86a859f
+    domain: light
+  mode: single
+- id: '1748743000520'
+  alias: Laundry Room Close
+  description: ''
+  triggers:
+  - type: not_opened
+    device_id: d21cb71010a62e97bdf0c93b8a62190f
+    entity_id: 3a3441e4fe5638480a5ce2e68076eaa2
+    domain: binary_sensor
+    trigger: device
+  conditions: []
+  actions:
+  - type: turn_off
+    device_id: aa7e375127eb9d42aa7120e84302971f
+    entity_id: 6427d26ad5d9a95c5692bf83f86a859f
+    domain: light
+  mode: single
+- id: '1748766866371'
+  alias: Cody Awake
+  description: Morning routine for when Cody's phone is unplugged in the morning.
+  triggers:
+  - type: not_plugged_in
+    device_id: 9381be378546e86a3bd680eacd722591
+    entity_id: 593c3a4a231b06acfeb66c15112398aa
+    domain: binary_sensor
+    trigger: device
+  conditions:
+  - condition: time
+    after: 05:30:00
+    before: 08:00:00
+    weekday:
+    - sat
+    - fri
+    - thu
+    - wed
+    - tue
+    - mon
+    - sun
+  actions:
+  - action: light.turn_on
+    metadata: {}
+    data:
+      brightness_pct: 50
+    target:
+      area_id: bedroom
+  mode: single
+- id: '1748836412915'
+  alias: Kris Awake
+  description: Morning routine for when Kris's phone is unplugged in the morning.
+  triggers:
+  - type: not_plugged_in
+    device_id: 922ce8aeab0a2d9c6e2154210dd91ef1
+    entity_id: b00af0f4c796fcbf2085643ffedd299f
+    domain: binary_sensor
+    trigger: device
+  conditions:
+  - condition: time
+    after: 05:30:00
+    before: 08:00:00
+    weekday:
+    - sat
+    - fri
+    - thu
+    - wed
+    - tue
+    - mon
+    - sun
+  actions:
+  - action: light.turn_on
+    metadata: {}
+    data:
+      brightness_pct: 10
+    target:
+      device_id: eee172d01883d5535bec5579d55a8ad7
+  - delay:
+      hours: 0
+      minutes: 15
+      seconds: 0
+      milliseconds: 0
+  - action: light.turn_off
+    metadata: {}
+    data: {}
+    target:
+      area_id: bedroom
+  mode: single
+- id: pantry_nfc_tag_toggle
+  alias: Tag Pantry Toggle is scanned
+  description: Toggle On/Off pantry light
+  triggers:
+  - trigger: tag
+    tag_id: '1'
+  conditions: []
+  actions:
+  - type: toggle
+    device_id: 8c79fd93c7e6cb55beb5758f59ff1b01
+    entity_id: 0a88867727d9b4709f69dc11f0b9766f
+    domain: light
+  mode: single
+- id: '1748916104078'
+  alias: Pantry Auto On
+  description: ''
+  triggers:
+  - type: occupied
+    device_id: e64b0f0f3b67d1f854908934448b9c72
+    entity_id: 52464e9c0edd4c10bc37a4a89abeffa3
+    domain: binary_sensor
+    trigger: device
+    for:
+      hours: 0
+      minutes: 0
+      seconds: 0
+  conditions: []
+  actions:
+  - type: turn_on
+    device_id: 8c79fd93c7e6cb55beb5758f59ff1b01
+    entity_id: 0a88867727d9b4709f69dc11f0b9766f
+    domain: light
+    brightness_pct: 100
+  mode: single
+- id: '1748916145233'
+  alias: Pantry Auto Off
+  description: ''
+  triggers:
+  - type: not_occupied
+    device_id: e64b0f0f3b67d1f854908934448b9c72
+    entity_id: 52464e9c0edd4c10bc37a4a89abeffa3
+    domain: binary_sensor
+    trigger: device
+    for:
+      hours: 0
+      minutes: 0
+      seconds: 0
+  conditions: []
+  actions:
+  - type: turn_off
+    device_id: 8c79fd93c7e6cb55beb5758f59ff1b01
+    entity_id: 0a88867727d9b4709f69dc11f0b9766f
+    domain: light
+  mode: single
+- id: '1748923055706'
+  alias: Tag Stop Automation is scanned
+  description: ''
+  triggers:
+  - trigger: tag
+    tag_id: '2'
+  conditions: []
+  actions:
+  - action: input_boolean.toggle
+    metadata: {}
+    data: {}
+    target:
+      entity_id: input_boolean.stop_bedtime_routine_cody
+  mode: single
+- id: '1748923543013'
+  alias: Helper reset
+  description: ''
+  triggers:
+  - trigger: time
+    at: 01:00:00
+  conditions: []
+  actions:
+  - action: input_boolean.turn_off
+    metadata: {}
+    data: {}
+    target:
+      entity_id: input_boolean.stop_bedtime_routine_cody
+  mode: single
+- id: '1748923765614'
+  alias: Kris bed
+  description: Beditme routine for when phone is plugged in.
+  triggers:
+  - type: plugged_in
+    device_id: 922ce8aeab0a2d9c6e2154210dd91ef1
+    entity_id: b00af0f4c796fcbf2085643ffedd299f
+    domain: binary_sensor
+    trigger: device
+  conditions:
+  - condition: time
+    after: '20:00:00'
+    before: 04:00:00
+    weekday:
+    - sat
+    - fri
+    - thu
+    - wed
+    - tue
+    - mon
+    - sun
+  actions:
+  - action: light.turn_off
+    metadata: {}
+    data: {}
+    target:
+      area_id: bedroom
+  mode: single
+- id: '1749007397033'
+  alias: Tag Kris To-Do is scanned
+  description: ''
+  triggers:
+  - trigger: tag
+    tag_id: '3'
+  conditions: []
+  actions:
+  - action: notify.alexa_media_kitchen_dot
+    data:
+      message: You have {{ states('todo.kris_s_to_do') }} items on your To-Do list.
+  mode: single
+- id: '1749008555609'
+  alias: Tag Cody To-Do is scanned
+  description: ''
+  triggers:
+  - trigger: tag
+    tag_id: '4'
+  conditions: []
+  actions:
+  - action: notify.alexa_media_kitchen_dot
+    data:
+      message: You have {{ states('todo.cody_s_to_do') }} items on your To-Do list.
+  mode: single
+- id: '1749046927924'
+  alias: Report offline zigbee/zwave/battery/smart plug devices
+  description: ''
+  use_blueprint:
+    path: Tahutipai/report_zigbee_zwave_devices_gone_offline.yaml
+    input:
+      actions:
+      - action: input_boolean.turn_on
+        metadata: {}
+        data: {}
+        target:
+          entity_id: input_boolean.device_offline
+      - action: input_text.set_value
+        metadata: {}
+        data:
+          value: '{{offline_devices}}'
+        target:
+          entity_id: input_text.offline_devices_list
