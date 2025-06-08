@@ -4,10 +4,6 @@
 My personal [Home Assistant Container](https://home-assistant.io) configurations.  These are the active automations and configurations that I use every day and are updated frequently as I add more devices and devise increasingly complex methods for performing simple tasks.
 
 # <a name="menu">Menu</a>
- | [Hubs](#hubs) | [Lighting](#lighting) | [Outlets & Switches](#outlets)|  [Voice Assistants](#voice) | [Media](#media) | [Sensors](#sensors) | [Cameras](#cameras) | [Retired](#retired) |
-
-
-# <a name="menu">Menu</a>
  | [Appliances](#appliances) | [Cameras](#cameras) | [Hubs](#hubs) | [Lighting](#lighting) | [Media](#media) | [Outlets & Switches](#outlets) | [Sensors](#sensors) | [Tablet Dashboards](#tablet) | [Vaccums](#vaccum) | [Voice Assistants](#voice) | [Retired](#retired) |
 
 ## <a name="appliances">Appliances</a>
