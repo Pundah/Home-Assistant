@@ -14,8 +14,15 @@ recorder:
 #################################################################
 ## Components
 #################################################################
-
 battery_notes:
+
+powercalc:
+  enable_autodiscovery: true
+  create_utility_meters: false
+  utility_meter_tariffs:
+    - general
+    - peak
+    - offpeak
 
 #################################################################
 ## Notifications
@@ -24,7 +31,6 @@ battery_notes:
 #################################################################
 ## Includes
 #################################################################
-
 automation manual: !include_dir_merge_list automation/
 automation UI: !include automations.yaml
 script: !include scripts.yaml

@@ -2,8 +2,8 @@ version: 4
 mqtt:
   base_topic: zigbee2mqtt
   server: mqtt://core-mosquitto:1883
-  user: !secret z2m_username
-  password: !secret z2m_password
+  user: mqtt
+  password: !secret mqttpassword
 serial:
   port: >-
     /dev/serial/by-id/usb-Itead_Sonoff_Zigbee_3.0_USB_Dongle_Plus_V2_b248d13b1574ef119b7fbb74d9b539e6-if00-port0
@@ -47,27 +47,5 @@ frontend:
 homeassistant:
   enabled: true
 devices:
-  "0xffffb40e06008611":
-    friendly_name: Washer Vibration Sensor
-  "0xffffb40e06008688":
-    friendly_name: Dryer Vibration Sensor
-  "0xffffb40e0600a9c2":
-    friendly_name: TV Power Strip
-  "0xffffb40e06018296":
-    friendly_name: Cody's Desk
-  "0xffffb40e0601747b":
-    friendly_name: Master Bedroom TV Power Strip
-  "0xffffb40e06018ad4":
-    friendly_name: Wifi Outlet
-  "0x00124b002e6bf88a":
-    friendly_name: Pantry Motion Sensor
-  "0x00124b002fa5730b":
-    friendly_name: Laundry Room Contact Sensor
-  "0x08ddebfffee139f7":
-    friendly_name: Kitchen Water Leak Sensor
-  "0x44e2f8fffe0bfacc":
-    friendly_name: Laundry Room Water Leak Sensor
-  "0x44e2f8fffe0c2802":
-    friendly_name: Master Bedroom Water Leak Sensor
 availability:
   enabled: true
