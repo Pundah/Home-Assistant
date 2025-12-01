@@ -159,43 +159,6 @@
     target:
       entity_id: input_boolean.dryer_running
   mode: single
-- id: '1748567409416'
-  alias: Washer Running & Finish notification
-  description: ''
-  triggers:
-  - type: current
-    device_id: 73cfac6ba418fbfdfd041791f1b79183
-    entity_id: 855a49eb4a5e4a51339de34dd6e642e5
-    domain: sensor
-    trigger: device
-    above: 0.04
-  conditions: []
-  actions:
-  - action: input_boolean.turn_on
-    metadata: {}
-    data: {}
-    target:
-      entity_id:
-      - input_boolean.washer_running
-  - wait_for_trigger:
-    - type: frequency
-      device_id: 73cfac6ba418fbfdfd041791f1b79183
-      entity_id: 9e0b0c06126d1843da3dd7f28a2650f7
-      domain: sensor
-      trigger: device
-      below: 0.05
-  - action: input_boolean.turn_off
-    metadata: {}
-    data: {}
-    target:
-      entity_id: input_boolean.washer_running
-  - action: notify.alexa_media_kitchen_dot
-    data:
-      message: The Washer is finished.
-  - action: notify.alexa_media_cody_s_desk_echo_dot
-    data:
-      message: The Washer is finished.
-  mode: single
 - id: '1748567585742'
   alias: Dryer Finished
   description: ''
@@ -303,9 +266,9 @@
   alias: Auto Lights - Pantry - Motion
   description: ''
   triggers:
-  - type: occupied
-    device_id: e64b0f0f3b67d1f854908934448b9c72
-    entity_id: 52464e9c0edd4c10bc37a4a89abeffa3
+  - type: opened
+    device_id: d21cb71010a62e97bdf0c93b8a62190f
+    entity_id: 3a3441e4fe5638480a5ce2e68076eaa2
     domain: binary_sensor
     trigger: device
   conditions: []
@@ -314,17 +277,18 @@
     metadata: {}
     data: {}
     target:
-      entity_id: light.pantry_light
+      area_id: pantry
   - wait_for_trigger:
-    - type: not_occupied
-      device_id: e64b0f0f3b67d1f854908934448b9c72
-      entity_id: 52464e9c0edd4c10bc37a4a89abeffa3
+    - type: not_opened
+      device_id: d21cb71010a62e97bdf0c93b8a62190f
+      entity_id: 3a3441e4fe5638480a5ce2e68076eaa2
       domain: binary_sensor
       trigger: device
-  - type: turn_off
-    device_id: 8c79fd93c7e6cb55beb5758f59ff1b01
-    entity_id: 0a88867727d9b4709f69dc11f0b9766f
-    domain: light
+  - action: light.turn_off
+    metadata: {}
+    data: {}
+    target:
+      area_id: pantry
   mode: single
 - id: '1748923055706'
   alias: NFC - Cody Bedtime Stop
@@ -506,32 +470,6 @@
     target:
       entity_id: light.master_closet
   mode: single
-- id: '1749774495213'
-  alias: Auto Lights - Laundry Room - Motion
-  description: ''
-  triggers:
-  - type: occupied
-    device_id: 8633d6d2f58b3eeab10f65cb8b285d29
-    entity_id: b60e575a809b353549b17a4c0f20800b
-    domain: binary_sensor
-    trigger: device
-  conditions: []
-  actions:
-  - type: turn_on
-    device_id: aa7e375127eb9d42aa7120e84302971f
-    entity_id: 6427d26ad5d9a95c5692bf83f86a859f
-    domain: light
-  - wait_for_trigger:
-    - type: not_occupied
-      device_id: 8633d6d2f58b3eeab10f65cb8b285d29
-      entity_id: b60e575a809b353549b17a4c0f20800b
-      domain: binary_sensor
-      trigger: device
-  - type: turn_off
-    device_id: aa7e375127eb9d42aa7120e84302971f
-    entity_id: 6427d26ad5d9a95c5692bf83f86a859f
-    domain: light
-  mode: single
 - id: '1749775911959'
   alias: Auto Lights - Master Closet - Motion
   description: ''
@@ -541,15 +479,7 @@
     entity_id: f7aa2bdff91cbeb40166a18add9ae326
     domain: binary_sensor
     trigger: device
-  conditions:
-  - condition: or
-    conditions:
-    - condition: state
-      entity_id: light.master_bedroom
-      state: 'on'
-    - condition: state
-      entity_id: schedule.closet_schedule
-      state: ''
+  conditions: []
   actions:
   - action: light.turn_on
     metadata: {}
@@ -592,7 +522,7 @@
       trigger: device
       for:
         hours: 0
-        minutes: 10
+        minutes: 30
         seconds: 0
   - action: light.turn_off
     metadata: {}
@@ -696,4 +626,73 @@
     data: {}
     target:
       entity_id: input_boolean.cactus_needs_water
+  mode: single
+- id: '1756321245745'
+  alias: Auto Lights - Laundry Room - Motion
+  description: ''
+  triggers:
+  - type: occupied
+    device_id: 8633d6d2f58b3eeab10f65cb8b285d29
+    entity_id: b60e575a809b353549b17a4c0f20800b
+    domain: binary_sensor
+    trigger: device
+  conditions: []
+  actions:
+  - action: light.turn_on
+    metadata: {}
+    data: {}
+    target:
+      device_id: aa7e375127eb9d42aa7120e84302971f
+  - wait_for_trigger:
+    - type: not_occupied
+      device_id: 8633d6d2f58b3eeab10f65cb8b285d29
+      entity_id: b60e575a809b353549b17a4c0f20800b
+      domain: binary_sensor
+      trigger: device
+  - action: light.turn_off
+    metadata: {}
+    data: {}
+    target:
+      device_id: aa7e375127eb9d42aa7120e84302971f
+  mode: single
+- id: '1756321759048'
+  alias: Washer Running
+  description: ''
+  triggers:
+  - type: current
+    device_id: 73cfac6ba418fbfdfd041791f1b79183
+    entity_id: 855a49eb4a5e4a51339de34dd6e642e5
+    domain: sensor
+    trigger: device
+    above: 0.08
+  conditions: []
+  actions:
+  - action: input_boolean.turn_on
+    metadata: {}
+    data: {}
+    target:
+      entity_id: input_boolean.washer_running
+  - action: notify.alexa_media_cody_s_desk_echo_dot
+    data:
+      message: The Washer is finished.
+  - action: notify.alexa_media_cody_s_desk_echo_dot
+    data: {}
+  mode: single
+- id: '1756321922067'
+  alias: Washer Finished
+  description: ''
+  triggers:
+  - type: current
+    device_id: 73cfac6ba418fbfdfd041791f1b79183
+    entity_id: 855a49eb4a5e4a51339de34dd6e642e5
+    domain: sensor
+    trigger: device
+    below: 0.09
+  conditions: []
+  actions:
+  - action: input_boolean.turn_off
+    metadata: {}
+    data: {}
+    target:
+      entity_id: input_boolean.washer_running
   mode: single

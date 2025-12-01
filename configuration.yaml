@@ -14,15 +14,6 @@ recorder:
 #################################################################
 ## Components
 #################################################################
-battery_notes:
-
-powercalc:
-  enable_autodiscovery: true
-  create_utility_meters: false
-  utility_meter_tariffs:
-    - general
-    - peak
-    - offpeak
 
 #################################################################
 ## Notifications
