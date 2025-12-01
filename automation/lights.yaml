@@ -1,38 +1,3 @@
 #################################################################
 ## Lighting Automations
 #################################################################
-
-## Laundry Room Light
-- id: "1748742943882"
-  alias: Laundry Room Open
-  description: ""
-  triggers:
-    - type: opened
-      device_id: d21cb71010a62e97bdf0c93b8a62190f
-      entity_id: 3a3441e4fe5638480a5ce2e68076eaa2
-      domain: binary_sensor
-      trigger: device
-  conditions: []
-  actions:
-    - type: turn_on
-      device_id: aa7e375127eb9d42aa7120e84302971f
-      entity_id: 6427d26ad5d9a95c5692bf83f86a859f
-      domain: light
-  mode: single
-
-- id: "1748743000520"
-  alias: Laundry Room Close
-  description: ""
-  triggers:
-    - type: not_opened
-      device_id: d21cb71010a62e97bdf0c93b8a62190f
-      entity_id: 3a3441e4fe5638480a5ce2e68076eaa2
-      domain: binary_sensor
-      trigger: device
-  conditions: []
-  actions:
-    - type: turn_off
-      device_id: aa7e375127eb9d42aa7120e84302971f
-      entity_id: 6427d26ad5d9a95c5692bf83f86a859f
-      domain: light
-  mode: single

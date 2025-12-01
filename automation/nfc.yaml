@@ -1,18 +1,3 @@
 #################################################################
 ## NFC Tag Automations
 #################################################################
-
-# Pantry Light NFC
-- id: "pantry_nfc_tag_toggle"
-  alias: Tag Pantry Toggle is scanned
-  description: Toggle On/Off pantry light
-  triggers:
-    - trigger: tag
-      tag_id: "1"
-  conditions: []
-  actions:
-    - type: toggle
-      device_id: 8c79fd93c7e6cb55beb5758f59ff1b01
-      entity_id: 0a88867727d9b4709f69dc11f0b9766f
-      domain: light
-  mode: single

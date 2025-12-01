@@ -1,35 +1,3 @@
 #################################################################
 ## Bedtime Automations
 #################################################################
-
-#################
-## Cody's Bedtime
-#################
-- id: "1748766727705"
-  alias: Cody's Bedtime
-  description: Beditme routine for when phone is plugged in.
-  triggers:
-    - type: plugged_in
-      device_id: 9381be378546e86a3bd680eacd722591
-      entity_id: 593c3a4a231b06acfeb66c15112398aa
-      domain: binary_sensor
-      trigger: device
-  conditions:
-    - condition: time
-      after: "20:00:00"
-      before: 04:00:00
-      weekday:
-        - sat
-        - fri
-        - thu
-        - wed
-        - tue
-        - mon
-        - sun
-  actions:
-    - action: light.turn_off
-      metadata: {}
-      data: {}
-      target:
-        area_id: bedroom
-  mode: single
