@@ -1,6 +1,7 @@
 #################################################################
 ## Lighting Automations
 #################################################################
+<<<<<<< Updated upstream
 
 ## Laundry Room Light
 - id: "1748742943882"
@@ -24,11 +25,101 @@
   alias: Laundry Room Close
   description: ""
   triggers:
+=======
+- id: '1749365676704' ## Auto Off - All Lights - 1:00 AM
+  alias: Auto Off - All Lights - 1:00 AM
+  description: ''
+  triggers:
+  - trigger: time
+    at: 01:00:00
+  conditions: []
+  actions:
+  - action: light.turn_off
+    metadata: {}
+    data: {}
+    target:
+      floor_id: second_floor
+  mode: single
+- id: '1749775911959' ## Auto Lights - Master Closet - Motion
+  alias: Auto Lights - Master Closet - Motion
+  description: ''
+  triggers:
+  - type: occupied
+    device_id: 1ca092abc445a29294c3a258b0c0b49c
+    entity_id: f7aa2bdff91cbeb40166a18add9ae326
+    domain: binary_sensor
+    trigger: device
+  conditions: []
+  actions:
+  - action: light.turn_on
+    metadata: {}
+    data: {}
+    target:
+      entity_id: light.master_closet
+  - wait_for_trigger:
+    - type: not_occupied
+      device_id: 1ca092abc445a29294c3a258b0c0b49c
+      entity_id: f7aa2bdff91cbeb40166a18add9ae326
+      domain: binary_sensor
+      trigger: device
+  - action: light.turn_off
+    metadata: {}
+    data: {}
+    target:
+      entity_id: light.master_closet
+  mode: single
+- id: '1756321245745' ## Auto Lights - Laundry Room - Motion
+  alias: Auto Lights - Laundry Room - Motion
+  description: ''
+  triggers:
+  - type: occupied
+    device_id: 8633d6d2f58b3eeab10f65cb8b285d29
+    entity_id: b60e575a809b353549b17a4c0f20800b
+    domain: binary_sensor
+    trigger: device
+  conditions: []
+  actions:
+  - action: light.turn_on
+    metadata: {}
+    data: {}
+    target:
+      device_id: aa7e375127eb9d42aa7120e84302971f
+  - wait_for_trigger:
+    - type: not_occupied
+      device_id: 8633d6d2f58b3eeab10f65cb8b285d29
+      entity_id: b60e575a809b353549b17a4c0f20800b
+      domain: binary_sensor
+      trigger: device
+  - action: light.turn_off
+    metadata: {}
+    data: {}
+    target:
+      device_id: aa7e375127eb9d42aa7120e84302971f
+  mode: single
+- id: '1748916145233' ## Auto Lights - Pantry - Motion
+  alias: Auto Lights - Pantry - Motion
+  description: ''
+  triggers:
+  - type: opened
+    device_id: d21cb71010a62e97bdf0c93b8a62190f
+    entity_id: 3a3441e4fe5638480a5ce2e68076eaa2
+    domain: binary_sensor
+    trigger: device
+  conditions: []
+  actions:
+  - action: light.turn_on
+    metadata: {}
+    data: {}
+    target:
+      area_id: pantry
+  - wait_for_trigger:
+>>>>>>> Stashed changes
     - type: not_opened
       device_id: d21cb71010a62e97bdf0c93b8a62190f
       entity_id: 3a3441e4fe5638480a5ce2e68076eaa2
       domain: binary_sensor
       trigger: device
+<<<<<<< Updated upstream
   conditions: []
   actions:
     - type: turn_off
@@ -36,3 +127,43 @@
       entity_id: 6427d26ad5d9a95c5692bf83f86a859f
       domain: light
   mode: single
+=======
+  - action: light.turn_off
+    metadata: {}
+    data: {}
+    target:
+      area_id: pantry
+  mode: single
+- id: '1749777982957' ## Auto Lights - Kitchen - Vibration
+  alias: Auto Lights - Kitchen - Vibration
+  description: ''
+  triggers:
+  - type: vibration
+    device_id: ad535e51b7dce956da05000a026e15c4
+    entity_id: f5d132311de9119488b7399cfbbe5b9b
+    domain: binary_sensor
+    trigger: device
+  conditions: []
+  actions:
+  - action: light.turn_on
+    metadata: {}
+    data: {}
+    target:
+      entity_id: light.kitchen
+  - wait_for_trigger:
+    - type: no_vibration
+      device_id: ad535e51b7dce956da05000a026e15c4
+      entity_id: f5d132311de9119488b7399cfbbe5b9b
+      domain: binary_sensor
+      trigger: device
+      for:
+        hours: 0
+        minutes: 30
+        seconds: 0
+  - action: light.turn_off
+    metadata: {}
+    data: {}
+    target:
+      entity_id: light.kitchen
+  mode: single
+>>>>>>> Stashed changes

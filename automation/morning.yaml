@@ -1,6 +1,7 @@
 #################################################################
 ## Morning Automations
 #################################################################
+<<<<<<< Updated upstream
 
 ## Cody's Morning
 - id: "1748766866371"
@@ -72,3 +73,52 @@
       target:
         area_id: bedroom
   mode: single
+=======
+- id: bedroom_fan_morning
+  alias: Auto Off - MBR Fan - 6:15 AM
+  description: Turns off the Master bedroom fan at 6:15 AM
+  triggers:
+  - trigger: time
+    at: 06:15:00
+  conditions:
+  - condition: device
+    type: is_on
+    device_id: 9b5f103c6f070811a4a779daec9a3417
+    entity_id: e8fa8bada3c4e7e75dfc161228f0514a
+    domain: switch
+  actions:
+  - type: turn_off
+    device_id: 9b5f103c6f070811a4a779daec9a3417
+    entity_id: e8fa8bada3c4e7e75dfc161228f0514a
+    domain: switch
+  mode: single
+- id: '1748766866371'
+  alias: Cody Awake
+  description: Morning routine for when Cody's phone is unplugged in the morning.
+  triggers:
+  - type: not_plugged_in
+    device_id: 9381be378546e86a3bd680eacd722591
+    entity_id: 593c3a4a231b06acfeb66c15112398aa
+    domain: binary_sensor
+    trigger: device
+  conditions:
+  - condition: time
+    after: 05:30:00
+    before: 08:00:00
+    weekday:
+    - sat
+    - fri
+    - thu
+    - wed
+    - tue
+    - mon
+    - sun
+  actions:
+  - action: light.turn_on
+    metadata: {}
+    data:
+      brightness_pct: 50
+    target:
+      area_id: bedroom
+  mode: single
+>>>>>>> Stashed changes

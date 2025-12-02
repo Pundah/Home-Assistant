@@ -1,0 +1,37 @@
+#################################################################
+## Misc Automations
+#################################################################
+- id: '1749785160667' ## Cactus humidity below 20
+  alias: Cactus humidity below 20
+  description: ''
+  triggers:
+  - type: humidity
+    device_id: 9e49546c7dec3189d608993bb3de8eea
+    entity_id: 1271b93e4fa4628395eab3bac79bb805
+    domain: sensor
+    trigger: device
+    below: 20
+    for:
+      hours: 0
+      minutes: 30
+      seconds: 0
+  conditions: []
+  actions:
+  - action: input_boolean.turn_on
+    metadata: {}
+    data: {}
+    target:
+      entity_id: input_boolean.cactus_needs_water
+  - wait_for_trigger:
+    - type: humidity
+      device_id: 9e49546c7dec3189d608993bb3de8eea
+      entity_id: 1271b93e4fa4628395eab3bac79bb805
+      domain: sensor
+      trigger: device
+      above: 20
+  - action: input_boolean.turn_off
+    metadata: {}
+    data: {}
+    target:
+      entity_id: input_boolean.cactus_needs_water
+  mode: single

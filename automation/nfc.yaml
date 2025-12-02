@@ -1,6 +1,7 @@
 #################################################################
 ## NFC Tag Automations
 #################################################################
+<<<<<<< Updated upstream
 
 # Pantry Light NFC
 - id: "pantry_nfc_tag_toggle"
@@ -16,3 +17,121 @@
       entity_id: 0a88867727d9b4709f69dc11f0b9766f
       domain: light
   mode: single
+=======
+- id: '1748923055706'
+  alias: NFC - Cody Bedtime Stop
+  description: ''
+  triggers:
+  - trigger: tag
+    tag_id: '2'
+  conditions: []
+  actions:
+  - action: input_boolean.toggle
+    metadata: {}
+    data: {}
+    target:
+      entity_id: input_boolean.stop_bedtime_routine_cody
+  - wait_for_trigger:
+    - trigger: time
+      at: 01:00:00
+  - action: input_boolean.turn_on
+    metadata: {}
+    data: {}
+    target:
+      entity_id: input_boolean.stop_bedtime_routine_cody
+  mode: single
+- id: '1749007397033'
+  alias: Tag Kris To-Do is scanned
+  description: ''
+  triggers:
+  - trigger: tag
+    tag_id: Kris To Do
+  conditions: []
+  actions:
+  - action: notify.alexa_media_kitchen_dot
+    data:
+      message: You have {{ states('todo.kris_s_to_do') }} items on your To-Do list.
+  mode: single
+- id: '1749008555609'
+  alias: Tag Cody To-Do is scanned
+  description: ''
+  triggers:
+  - trigger: tag
+    tag_id: Cody To Do
+  conditions: []
+  actions:
+  - action: notify.alexa_media_kitchen_dot
+    data:
+      message: You have {{ states('todo.cody_s_to_do') }} items on your To-Do list.
+  mode: single
+- id: '1749703338431'
+  alias: Tag Pantry is scanned
+  description: ''
+  triggers:
+  - trigger: tag
+    tag_id: Pantry
+  conditions: []
+  actions:
+  - action: light.toggle
+    metadata: {}
+    data: {}
+    target:
+      area_id: pantry
+  mode: single
+- id: '1749703362616'
+  alias: Tag Kitchen is scanned
+  description: ''
+  triggers:
+  - trigger: tag
+    tag_id: Kitchen
+  conditions: []
+  actions:
+  - action: light.toggle
+    metadata: {}
+    data: {}
+    target:
+      area_id: kitchen
+  mode: single
+- id: '1749703394412'
+  alias: Tag Guest Bedroom is scanned
+  description: ''
+  triggers:
+  - trigger: tag
+    tag_id: Guest Bedroom
+  conditions: []
+  actions:
+  - action: light.toggle
+    metadata: {}
+    data: {}
+    target:
+      entity_id: light.guest_bedroom
+  mode: single
+- id: '1749703418876'
+  alias: Tag Master Bedroom is scanned
+  description: ''
+  triggers:
+  - trigger: tag
+    tag_id: 'Master Bedroom '
+  conditions: []
+  actions:
+  - action: light.toggle
+    metadata: {}
+    data: {}
+    target:
+      area_id: bedroom
+  mode: single
+- id: '1749703447371'
+  alias: Tag Master Closet is scanned
+  description: ''
+  triggers:
+  - trigger: tag
+    tag_id: Master Closet
+  conditions: []
+  actions:
+  - action: light.toggle
+    metadata: {}
+    data: {}
+    target:
+      entity_id: light.master_closet
+  mode: single
+>>>>>>> Stashed changes

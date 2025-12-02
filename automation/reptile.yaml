@@ -1,0 +1,31 @@
+#################################################################
+## Reptile Based Automations
+#################################################################
+- id: '1749430100271' ## Auto Lights - Reptiles - Time - On
+  alias: Auto Lights - Reptiles - Time - On
+  description: ''
+  triggers:
+  - trigger: time
+    at: 06:15:00
+  conditions: []
+  actions:
+  - action: switch.turn_on
+    metadata: {}
+    data: {}
+    target:
+      entity_id: switch.reptile_uvb
+  mode: single
+- id: '1764623651604' ## Auto Lights - Reptiles - Time - Off
+  alias: Auto Lights - Reptiles - Time - Off
+  description: ''
+  triggers:
+  - trigger: time
+    at: '21:30:00'
+  conditions: []
+  actions:
+  - action: switch.turn_off
+    metadata: {}
+    data: {}
+    target:
+      entity_id: switch.reptile_uvb
+  mode: single
